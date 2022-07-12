@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>04.通用配置01</title>
+  <!-- 1. 引入echarts.js文件 -->
+  <script src="lib/echarts.min.js"></script>
+
+  <!-- 
+    1. 引入echarts.js文件 
+    2. 準備一個呈現圖表的盒子
+    3. 初始化echarts實例對象
+    4. 準備配置項
+    5. 將配置項設置給echarts實例對象 
+  -->
+</head>
+
+<body>
+
+  <!-- 2. 準備一個呈現圖表的盒子 -->
+  <div style="width: 600px; height: 400px;"></div>
+  <script>
+    // 3. 初始化echarts實例對象
+    // 參數，dom，決定圖表最終呈現的位置
+    var mCharts = echarts.init(document.querySelector('div'))
+
+    var xDataArr = ['張三', '李四', '王五', '潤娥', '小明', '茅台', '二妞', '大強']
+    var yDataArr = [88, 92, 63, 77, 94, 80, 72, 86]
+    // 4. 準備配置項
+    var option = {
+      title: {
+        text: '成績展示',
+        textStyle: {
+          color: 'red'
+        },
+        borderWidth: 5,
+        borderColor: 'blue',
+        borderRadius: 5,
+        left: 30,
+        top: 10
+      },
+      tooltip: {
+        // trigger: 'item'
+        trigger: 'axis',
+        triggerOn: 'click',
+        // formatter: '{b} 的成績是 {c}'
+        formatter: function (arg) {
+          console.log("@@@arg", arg)
+          return arg[0].name + '的分數是∶' + arg[0].data
+        }
+      },
+      xAxis: {
+        type: 'category', // 類目軸
+        data: xDataArr
+      },
+      yAxis: {
+        type: 'value' // 數值軸
+      },
+      series: [
+        {
+          name: '語文',
+          type: 'bar',
+          data: yDataArr
+        }
+      ]
+    }
+
+    // 5. 將配置項設置給echarts實例對象 
+    mCharts.setOption(option)
+  </script>
+
+</body>
+
+</html>

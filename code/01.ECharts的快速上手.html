@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>01.ECharts的快速上手</title>
+  <!-- 1. 引入echarts.js文件 -->
+  <script src="lib/echarts.min.js"></script>
+
+  <!-- 
+    1. 引入echarts.js文件
+    2. 準備一個呈現圖表的盒子
+    3. 初始化echarts實例對象
+    4. 準備配置項
+    5. 將配置項設置給echarts實例對象 
+  -->
+</head>
+
+<body>
+
+  <!-- 2. 準備一個呈現圖表的盒子 -->
+  <div style="width: 600px; height: 400px;"></div>
+  <script>
+    // 3. 初始化echarts實例對象
+    // 參數，dom，決定圖表最終呈現的位置
+    var mCharts = echarts.init(document.querySelector('div'))
+
+    // 4. 準備配置項
+    var option = {
+      xAxis: {
+        type: 'category',
+        data: ['小明', '小紅', '小王']
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: [
+        {
+          name: '語文',
+          type: 'bar',
+          data: [70, 92, 87]
+        }
+      ]
+    }
+
+    // 5. 將配置項設置給echarts實例對象 
+    mCharts.setOption(option)
+  </script>
+
+</body>
+
+</html>

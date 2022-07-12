@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>03.柱狀圖的實現</title>
+  <!-- 1. 引入echarts.js文件 -->
+  <script src="lib/echarts.min.js"></script>
+
+  <!-- 
+    1. 引入echarts.js文件 
+    2. 準備一個呈現圖表的盒子
+    3. 初始化echarts實例對象
+    4. 準備配置項
+    5. 將配置項設置給echarts實例對象 
+  -->
+</head>
+
+<body>
+
+  <!-- 2. 準備一個呈現圖表的盒子 -->
+  <div style="width: 600px; height: 400px;"></div>
+  <script>
+    // 3. 初始化echarts實例對象
+    // 參數，dom，決定圖表最終呈現的位置
+    var mCharts = echarts.init(document.querySelector('div'))
+
+    var xDataArr = ['張三', '李四', '王五', '潤娥', '小明', '茅台', '二妞', '大強']
+    var yDataArr = [88, 92, 63, 77, 94, 80, 72, 86]
+    // 4. 準備配置項
+    var option = {
+      // xAxis: {
+      //   type: 'category', // 類目軸
+      //   data: xDataArr
+      // },
+      // yAxis: {
+      //   type: 'value' // 數值軸
+      // },
+      xAxis: {
+        type: 'value' // 數值軸        
+      },
+      yAxis: {
+        type: 'category', // 類目軸
+        data: xDataArr
+      },
+      series: [
+        {
+          name: '語文',
+          type: 'bar',
+          markPoint: {
+            data: [
+              {
+                type: 'max',
+                name: '最大值'
+              },
+              {
+                type: 'min',
+                name: '最小值'
+              }
+            ]
+          },
+          markLine: {
+            data: [
+              {
+                type: 'average',
+                name: '平均值'
+              }
+            ]
+          },
+          label: {
+            show: true,
+            rotate: 60,
+            position: 'top'
+          },
+          barWidth: '30%',
+          data: yDataArr
+        }
+      ]
+    }
+
+    // 5. 將配置項設置給echarts實例對象 
+    mCharts.setOption(option)
+  </script>
+
+</body>
+
+</html>

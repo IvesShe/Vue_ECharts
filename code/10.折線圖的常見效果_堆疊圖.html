@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10.折線圖的常見效果_堆疊圖</title>
+  <!-- 1. 引入echarts.js文件 -->
+  <script src="lib/echarts.min.js"></script>
+
+  <!-- 
+    1. 引入echarts.js文件 
+    2. 準備一個呈現圖表的盒子
+    3. 初始化echarts實例對象
+    4. 準備配置項
+    5. 將配置項設置給echarts實例對象 
+  -->
+</head>
+
+<body>
+
+  <!-- 2. 準備一個呈現圖表的盒子 -->
+  <div style="width: 600px; height: 400px;"></div>
+  <script>
+    // 3. 初始化echarts實例對象
+    // 參數，dom，決定圖表最終呈現的位置
+    var mCharts = echarts.init(document.querySelector('div'))
+
+    var xDataArr = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+    var yDataArr = [3000, 2800, 900, 1000, 800, 700, 1400, 1300, 900, 1000, 800, 600]
+    var yDataArr2 = [2000, 3800, 1900, 500, 900, 1700, 2400, 300, 1900, 1500, 1800, 200]
+    // 4. 準備配置項
+    var option = {
+      xAxis: {
+        type: 'category', // 類目軸
+        data: xDataArr,
+      },
+      yAxis: {
+        type: 'value', // 數值軸
+      },
+      series: [
+        {
+          name: '康師傅',
+          type: 'line',
+          data: yDataArr,
+          stack: 'all',
+          areaStyle: {}
+        },
+        {
+          name: '統一方便麵',
+          type: 'line',
+          data: yDataArr2,
+          stack: 'all',
+          areaStyle: {}
+        },
+      ]
+    }
+
+    // 5. 將配置項設置給echarts實例對象 
+    mCharts.setOption(option)
+  </script>
+
+</body>
+
+</html>
